@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+
+<script src="lib/ngCordova/dist/ng-cordova.min.js"></script>
+ <script src="lib/ng-cordova-oauth/dist/ng-cordova-oauth.js"></script>
+    <script src="cordova.js"></script>
+
+    <script src="js/app.js"></script>
+  </head>
+
+
+ <body ng-app="starter">
+
+<ion-side-menus>
+  <!-- Left menu -->
+  <ion-side-menu side="left">
+  <ion-view>
+<ion-content>
+  <div class="list" ng-controller="panelCtrl">
+ <div class="row" style="text-align:center">
+ 
+  <div class="card padding">
+     <img src="{{feedData.myPicture}}" width="150px" />
+  </div>
+
+</div>
+ 
+    
+      <div class="list list-inset" ng-show="loggedIn == true">
+
+    <div class="item item-icon-left">
+      <i class="icon ion-social-facebook"></i>
+      <p style="margin-left:15px">{{feedData.name}}</p>
+    </div>
+    
+
+</div>
+
+
+   
+
+<noscript>
+
+  <a class="item item-icon-left calm" ng-click="doLogin()" ng-show="loggedIn == false" href="#">
+    <i class="icon ion-android-settings"></i>
+    Login
+  </a>
+
+
+
+    <a class="item item-icon-left calm" ng-click="doLogout()" ng-show="loggedIn == true" href="#">
+    <i class="icon ion-android-settings"></i>
+    Logout
+  </a>
+</noscript>
+
+
+    <a class="item item-icon-left calm" ng-click="toggleLeft()" href="#/">
+    <i class="icon ion-android-home"></i>
+    Library
+  </a>
+
+      <a class="item item-icon-left calm"  ng-click="toggleLeft()" href="#/scan">
+    <i class="icon ion-ios-plus"></i>
+    Add a Book
+  </a>
+
+        <a class="item item-icon-left calm"  ng-click="toggleLeft()" href="#/random">
+    <i class="icon ion-ios-color-wand"></i>
+    Random Book
+  </a>
+
+
+
+  <div class="card padding" ng-show="showLogin == true">
+
+    <input type="text" ng-model="user.email" placeholder="Email"/>
+    <input type="text" ng-model="user.pass" placeholder="Password"/>
+    <a href="#" ng-click="createUser()" class="button button-block button-calm">Login</a>
+    
+  </div>
+
+  <div class="card padding" ng-show="fbLoggedIn == true">
+<a href="#" ng-click="doLogout()" class="button button-block icon-left button-positive">
+        <i class="ion ion-social-facebook-outline"></i>
+        Logout</a>
+</div>
+
+<div class="card padding" ng-show="fbLoggedIn == false">
+<a href="#" ng-click="fbLogin()" class="button button-block icon-left button-positive">
+        <i class="ion ion-social-facebook-outline"></i>
+        Facebook Login</a>
+</div>
+  
+</div>
+</ion-content>
+</ion-view>
+  </ion-side-menu>
+
+  <ion-side-menu-content>
+
+<ion-nav-view>
+
+</ion-nav-view>
+
+  </ion-side-menu-content>
+
+
+
+</ion-side-menus>
+
+    
+
+
+ 
+
+
+</body>
+</html>

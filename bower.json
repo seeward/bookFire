@@ -1,0 +1,12 @@
+{
+  "name": "HelloIonic",
+  "private": "true",
+  "devDependencies": {
+    "ionic": "driftyco/ionic-bower#1.1.0",
+    "platform": "~1.3.0"
+  },
+  "dependencies": {
+    "ngCordova": "c3634c64090fa11c3e6bab3fcdc29712d3ecb965",
+    "ng-cordova-oauth": "~0.1.4"
+  }
+}

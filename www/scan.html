@@ -1,0 +1,47 @@
+
+<ion-nav-bar>
+  <ion-nav-buttons side="left">
+   <!-- Toggle left side menu -->
+   <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+   <!-- Toggle right side menu -->
+   <button ng-click="scanBarcode()" class="button button-icon icon ion-ios-plus calm"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+<ion-view>
+<ion-content>
+<div class="card padding" style="padding-top:45px" ng-show="foundBook == false">
+	<div class="item item-text-wrap padding item-calm">Press add button at top right to scan book.</div>
+	</div>
+<div class="card padding" style="padding-top:45px" ng-show="foundBook == true">
+
+<div class="item item-icon-right padding">
+
+   <h1>{{bookNew.NAME}}</h1>
+   
+<i ng-click="addBook()" class="icon ion-android-add"></i>
+
+  <div class="item item-text-wrap item-thumbnail-left">
+
+        <img src='http://bks4.books.google.co.za/books?id={{bookNew.THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api'/>
+
+          <h2>{{bookNew.AUTHOR}}</h2>
+          <h2>{{bookNew.DATE}}</h2>
+
+  </div>
+
+  <div class="item item-text-wrap">
+		<p>{{bookNew.DESCRIPTION}}</p>
+  </div>
+
+
+
+<a href="#/" ng-click="addBook()" class="button button-block button-calm">Add to Library</a>
+<br><br>
+<a href="#/" ng-click="setBook()" class="button button-block">Back</a>
+
+</ion-content>
+</ion-view>
+

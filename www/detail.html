@@ -1,0 +1,52 @@
+<ion-view>
+<ion-nav-bar>
+  <ion-nav-buttons side="left">
+   <!-- Toggle left side menu -->
+   <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
+  </ion-nav-buttons>
+  
+  <ion-nav-buttons side="right">
+ 
+   <button ng-click="postToFB()" class="button button-icon icon ion-social-facebook positive"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+
+
+
+<ion-content class="padding">
+<div class="card padding">
+<div class="item item-icon-right item-text-wrap padding">
+   <h2>{{book.NAME}}</h2>
+   
+<i ng-click="favBook()" ng-show="book.fav == false" class="icon ion-ios-star-outline"></i>
+<i ng-click="favBook()" ng-show="book.fav == true" class="icon ion-ios-star"></i>
+</div>
+  <div class="item item-text-wrap item-thumbnail-left">
+        <img src='http://bks4.books.google.co.za/books?id={{book.THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api'/>
+          <h2>{{book.AUTHOR}}</h2>
+          <h2>{{book.DATE}}</h2>
+  </div>
+
+  <div class="item item-text-wrap">
+<p>{{book.DESCRIPTION}}</p>
+  </div>
+
+
+<div class="card padding" ng-repeat="comment in book.comments"><p>{{comment}}</p></div>
+
+  <a class="item item-icon-left calm" ng-click="addComment()" href="#">
+    <i class="icon ion-chatboxes"></i>
+    Add Comment
+  </a>
+
+
+   <a class="item" ng-click="clearComments()" href="#">
+ 
+    Clear Comments
+  </a>
+</div>
+<a href="#/" ng-click="setBook()" class="button button-block button-calm">Back</a>
+
+</ion-content>
+</ion-view>
+

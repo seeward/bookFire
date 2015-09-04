@@ -1,0 +1,37 @@
+<ion-view>
+
+
+
+
+<ion-nav-bar>
+  <ion-nav-buttons side="left">
+   <!-- Toggle left side menu -->
+   <button menu-toggle="left" class="button button-icon icon ion-navicon calm"></button>
+  </ion-nav-buttons>
+  <ion-nav-buttons side="right">
+   <!-- Toggle right side menu -->
+   <a id="true" href="#/scan" class="button button-icon icon ion-android-add calm"></a>
+   <button id="false" ng-click="showFavs()" class="fav button button-icon icon ion-ios-star-outline calm"></button>
+  </ion-nav-buttons>
+</ion-nav-bar>
+<ion-content>
+
+<div class="list padding">
+
+     <a collection-repeat="book in books | filter:filter" class="item item-thumbnail-left item-icon-right item-text-wrap" href="#/detail/{{book.ISBN}}">
+
+ <img ng-src='http://bks4.books.google.co.za/books?id={{book.THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api'/>
+
+              
+      	<h2>{{book.NAME}}</h2>
+ 		<h3>{{book.AUTHOR}}</h3>
+      	<p>{{book.DATE}}</p>
+		
+		<i class="icon ion-ios-arrow-forward calm"></i>
+
+</a>
+
+</div>
+
+</ion-content>
+</ion-view>
