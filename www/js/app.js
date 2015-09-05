@@ -6,7 +6,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/')
 
     $stateProvider.state("detail", {
-        url: "/detail/:isbn",
+        url: "/detail/:friends/:isbn",
         templateUrl: "detail.html",
         controller: "bookCtrl"
     })
@@ -37,6 +37,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller: "streamCtrl"
     })
 
+    $stateProvider.state("friends", {
+        url: "/friends",
+        templateUrl: "friends.html",
+        controller: "friendsCtrl"
+    })
+
 })
 
 
@@ -44,9 +50,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     var itemsRef = new Firebase("https://seewardbooks.firebaseio.com/Library");
 
-    $.each(itemsRef, function() {
 
-    })
+    return $firebaseArray(itemsRef);
+
+})
+
+.factory("seewardBooks", function($firebaseArray) {
+
+    var itemsRef = new Firebase("https://seewardbooks.firebaseio.com/Jaco/Library");
+
+
     return $firebaseArray(itemsRef);
 
 })
@@ -58,6 +71,18 @@ app.config(function($stateProvider, $urlRouterProvider) {
     return $firebaseArray(itemsRef);
 
 })
+
+
+
+
+.controller("friendsCtrl", function($scope, seewardBooks) {
+
+    $scope.books = seewardBooks;
+
+
+
+})
+
 
 .controller("streamCtrl", function($scope, $http) {
 
@@ -88,9 +113,19 @@ app.config(function($stateProvider, $urlRouterProvider) {
 })
 
 
-.controller("bookCtrl", function($scope, Books, $stateParams, $ionicSideMenuDelegate) {
+.controller("bookCtrl", function($scope, Books, $stateParams, $ionicSideMenuDelegate, seewardBooks) {
 
-    var all = Books;
+
+    if ($stateParams.friends == false) {
+        var all = Books;
+    } else {
+        var all = seewardBooks;
+    }
+
+
+    //alert($stateParams.friends);
+
+
 
 
     for (i = 0; i < all.length; i++) {
@@ -106,6 +141,8 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $scope.book = all[i];
         }
     }
+
+
 
     $scope.postToFB = function() {
 
@@ -304,7 +341,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
                     $scope.apply();
 
                     window.localStorage['userModal'] = JSON.stringify($scope.user);
-                    
+
                 });
             }, function(error) {
                 alert("There was a problem getting your profile.  Check the logs for details.");
@@ -393,12 +430,12 @@ app.config(function($stateProvider, $urlRouterProvider) {
             $(".ion-ios-star-outline").removeClass("ion-ios-star-outline").addClass("ion-ios-star");
             $scope.book.fav = true;
             all.$save($scope.book);
-            $scope.$apply();
+            //$scope.$apply();
         } else {
             $(".ion-ios-star").removeClass("ion-ios-star").addClass("ion-ios-star-outline");
             $scope.book.fav = false;
             all.$save($scope.book);
-            $scope.$apply();
+            //$scope.$apply();
         }
 
 
@@ -450,11 +487,41 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     $scope.books = Books;
 
+
+        $scope.showInstructions = false;
+
+
+
+    $scope.search = false;
     $scope.favState = false;
+
+    $scope.doSearch = function() {
+        $scope.search = !$scope.search;
+    }
+
+
+
+    $scope.deleteBook = function(isbn) {
+
+        for (i = 0; i < Books.length; i++) {
+            //alert(Books[i].ISBN)
+            if (isbn == Books[i].ISBN) {
+                // alert("intoIf")
+                $scope.deleted = Books[i];
+                Books.$remove($scope.deleted);
+                // alert("deleted")
+            }
+        }
+
+
+
+    }
+
 
     // alert("test: " + window.localStorage['accessToken']);
 
     $scope.showFavs = function() {
+
         if ($scope.favState == false) {
 
             $scope.books = $filter('filter')($scope.books, {
@@ -462,16 +529,16 @@ app.config(function($stateProvider, $urlRouterProvider) {
             });
 
 
-            $(".fav").removeClass("ion-ios-star-outline").addClass("ion-ios-star").addClass("calm");
+            $(".fav").removeClass("ion-ios-star-outline").addClass("ion-ios-star");
 
-            $scope.favState = !$scope.favState
+            $scope.favState = true
         } else {
-            $(".fav").removeClass("ion-ios-star").addClass("ion-ios-star-outline").addClass("calm");
+            $(".fav").removeClass("ion-ios-star").addClass("ion-ios-star-outline");
 
 
-            $scope.favState = !$scope.favState
+            $scope.favState = false
             $scope.books = Books;
-            $scope.$apply();
+
         }
 
     }

@@ -57,33 +57,38 @@
 
 <noscript>
 
-  <a class="item item-icon-left calm" ng-click="doLogin()" ng-show="loggedIn == false" href="#">
+  <a class="item item-icon-left" ng-click="doLogin()" ng-show="loggedIn == false" href="#">
     <i class="icon ion-android-settings"></i>
     Login
   </a>
 
 
 
-    <a class="item item-icon-left calm" ng-click="doLogout()" ng-show="loggedIn == true" href="#">
+    <a class="item item-icon-left" ng-click="doLogout()" ng-show="loggedIn == true" href="#">
     <i class="icon ion-android-settings"></i>
     Logout
   </a>
 </noscript>
 
 
-    <a class="item item-icon-left calm" ng-click="toggleLeft()" href="#/">
+    <a class="item item-icon-left" ng-click="toggleLeft()" href="#/">
     <i class="icon ion-android-home"></i>
     Library
   </a>
 
-      <a class="item item-icon-left calm"  ng-click="toggleLeft()" href="#/scan">
+      <a class="item item-icon-left"  ng-click="toggleLeft()" href="#/scan">
     <i class="icon ion-ios-plus"></i>
     Add a Book
   </a>
 
-        <a class="item item-icon-left calm"  ng-click="toggleLeft()" href="#/random">
+        <a class="item item-icon-left"  ng-click="toggleLeft()" href="#/random">
     <i class="icon ion-ios-color-wand"></i>
     Random Book
+  </a>
+
+          <a class="item item-icon-left"  ng-click="toggleLeft()" href="#/friends">
+    <i class="icon ion-social-facebook"></i>
+   Friends
   </a>
 
 
@@ -92,7 +97,7 @@
 
     <input type="text" ng-model="user.email" placeholder="Email"/>
     <input type="text" ng-model="user.pass" placeholder="Password"/>
-    <a href="#" ng-click="createUser()" class="button button-block button-calm">Login</a>
+    <a href="#" ng-click="createUser()" class="button button-block button">Login</a>
     
   </div>
 

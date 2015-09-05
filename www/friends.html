@@ -21,15 +21,13 @@
   </label>
 </div>
 
-<div class="card calm padding" ng-show="showInstructions == true">
-  <h4>Choose + to add books to your library</h4>
-</div>
 
-<ion-list class="list" can-swipe="true">
+
+<ion-list class="list">
 
 <ion-item collection-repeat="book in books | filter:filter">
-<ion-option-button class="button-light icon ion-trash-a" ng-click="deleteBook(book.ISBN)"></ion-option-button>
-     <a class="item item-thumbnail-left item-icon-right item-text-wrap" href="#/detail/{{friends}}/{{book.ISBN}}">
+
+     <a class="item item-thumbnail-left item-icon-right item-text-wrap" href="#/detail/{{book.ISBN}}">
 
  <img ng-src='http://bks4.books.google.co.za/books?id={{book.THUMB}}&printsec=frontcover&img=1&zoom=5&source=gbs_api'/>
 
